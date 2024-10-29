@@ -1,6 +1,7 @@
 import 'package:mysql1/mysql1.dart';
 
 class Server {
+  // Configurações de conexão com o banco de dados
   ConnectionSettings settings = ConnectionSettings(
       host: String.fromEnvironment('DbHost'),
       port: int.fromEnvironment('DbPort'),
@@ -10,6 +11,7 @@ class Server {
 
   MySqlConnection? connection;
 
+  // Método para conectar ao banco de dados
   Future<MySqlConnection?> connect() async {
     try {
       connection ??= await MySqlConnection.connect(settings);
@@ -23,15 +25,17 @@ class Server {
     }
   }
 
+  // Método para fechar a conexão com o banco de dados
   Future<void> close() async {
     try {
       if (connection != null) {
         await connection!.close();
-        connection = null;
       }
       print('Conexão fechada com sucesso');
     } catch (e) {
       print('Conexão não conseguiu fechar');
+    } finally {
+      connection = null;
     }
   }
 }
