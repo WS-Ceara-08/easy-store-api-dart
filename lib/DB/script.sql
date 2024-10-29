@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `Funcionarios` (
 
 -- Cria a tabela Produtos
 CREATE TABLE IF NOT EXISTS `Produtos` (
-  `idProduto` INT NOT NULL, -- Identificador único do produto
+  `idProduto` INT NOT NULL AUTO_INCREMENT, -- Identificador único do produto
   `nomeProduto` VARCHAR(45) NOT NULL, -- Nome do produto
   `quantidadeProduto` INT NOT NULL, -- Quantidade do produto
   PRIMARY KEY (`idProduto`) -- Chave primária
@@ -22,20 +22,20 @@ CREATE TABLE IF NOT EXISTS `Produtos` (
 
 -- Cria a tabela Fornecedores
 CREATE TABLE IF NOT EXISTS `Fornecedores` (
-  `idFornecedor` INT NOT NULL, -- Identificador único do fornecedor
+  `idFornecedor` INT NOT NULL AUTO_INCREMENT, -- Identificador único do fornecedor
   `nomeFornecedor` VARCHAR(45) NULL, -- Nome do fornecedor
   PRIMARY KEY (`idFornecedor`) -- Chave primária
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Cria a tabela Registros
 CREATE TABLE IF NOT EXISTS `Registros` (
-  `idFuncionario` INT NOT NULL, -- Identificador do funcionário
-  `idProduto` INT NOT NULL, -- Identificador do produto
   `idRegisto` INT NOT NULL AUTO_INCREMENT, -- Identificador único do registro
-  `quantidadeRegistro` INT NOT NULL, -- Quantidade registrada
   `tipoRegistro` ENUM("entrada", "saida", "avaria") NOT NULL, -- Tipo de registro
   `dataValidade` DATE NULL, -- Data de validade do produto
   `loteProduto` INT NOT NULL, -- Lote do produto
+  `quantidadeRegistro` INT NOT NULL, -- Quantidade registrada
+  `idFuncionario` INT NOT NULL, -- Identificador do funcionário
+  `idProduto` INT NOT NULL, -- Identificador do produto
   `idFornecedor` INT NOT NULL, -- Identificador do fornecedor
   PRIMARY KEY (`idRegisto`), -- Chave primária
   FOREIGN KEY (`idFuncionario`)
