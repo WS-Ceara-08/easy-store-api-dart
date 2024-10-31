@@ -39,3 +39,7 @@ class Server {
     }
   }
 }
+
+void main(List<String> args) {
+  Server().close();
+}
